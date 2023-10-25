@@ -54,7 +54,6 @@
             var accountNumber = document.getElementById("account-number").value;
 
             // Perform a lookup operation here and retrieve customer information
-
             // Mock customer data for demonstration purposes
             var customerData = {
                 name: "Sarah",
@@ -62,9 +61,28 @@
                 products: ["Basic Plan", "Platinum Plan"],
             };
 
+            // Mock transaction data for demonstration purposes
+            var transactionData = [
+                { date: "2023-09-01", description: "Purchase 1", amount: 50 },
+                { date: "2023-08-01", description: "Purchase 2", amount: 75 },
+                { date: "2023-07-01", description: "Purchase 3", amount: 30 },
+            ];
+
             if (accountNumber === customerData.accountNumber) {
                 document.getElementById("customer-name").textContent = customerData.name;
                 document.getElementById("customer-products").textContent = customerData.products.join(", ");
+
+                // Display transaction data
+                var transactionList = document.getElementById("transaction-list");
+                transactionList.innerHTML = ''; // Clear previous transactions
+
+                for (var i = 0; i < transactionData.length; i++) {
+                    var transaction = transactionData[i];
+                    var transactionItem = document.createElement("li");
+                    transactionItem.textContent = `${transaction.date}: ${transaction.description} - $${transaction.amount}`;
+                    transactionList.appendChild(transactionItem);
+                }
+
                 document.getElementById("customer-info").style.display = "block";
             } else {
                 alert("Customer not found. Please check the account number.");
