@@ -49,6 +49,31 @@
             height: 100vh; /* Make the left column fill the entire viewport height */
         }
     </style>
+</head>
+<body>
+    <header>
+        <h1>Premier Enterprise Customer Lookup</h1>
+    </header>
+    <div class="container full-height">
+        <label for="account-number">Enter Account Number:</label>
+        <input type="text" id="account-number" placeholder="e.g., 123456789">
+        <button onclick="lookupCustomer()">Lookup Customer</button>
+
+        <div id="customer-info">
+            <h2>Customer Information</h2>
+            <p><strong>Name:</strong> <span id="customer-name"></span></p>
+            <p><strong>Products:</strong> <span id="customer-products"></span></p>
+
+            <h2>Recent Transactions</h2>
+            <ul id="transaction-list"></ul>
+
+            <h2>Manage Products</h2>
+            <ul id="product-list"></ul>
+            <input type="text" id="new-plan" placeholder="Enter a new plan">
+            <button onclick="addPlan()">Add Plan</button>
+        </div>
+    </div>
+
     <script>
         function lookupCustomer() {
             var accountNumber = document.getElementById("account-number").value;
@@ -83,30 +108,42 @@
                     transactionList.appendChild(transactionItem);
                 }
 
+                // Display product list and add remove buttons
+                var productList = document.getElementById("product-list");
+                productList.innerHTML = ''; // Clear previous products
+
+                for (var i = 0; i < customerData.products.length; i++) {
+                    var product = customerData.products[i];
+                    var productItem = document.createElement("li");
+                    productItem.textContent = product;
+
+                    var removeButton = document.createElement("button");
+                    removeButton.textContent = "Remove";
+                    removeButton.onclick = function () {
+                        // Add code to remove the product from the plan
+                        // You can use customerData.products and product to update the plan
+                        alert("Remove " + product);
+                    };
+
+                    productItem.appendChild(removeButton);
+                    productList.appendChild(productItem);
+                }
+
                 document.getElementById("customer-info").style.display = "block";
             } else {
                 alert("Customer not found. Please check the account number.");
             }
         }
+
+        function addPlan() {
+            var newPlan = document.getElementById("new-plan").value;
+
+            if (newPlan) {
+                // Add code to add the new plan to the customer's products
+                // You can use customerData.products to update the plan
+                alert("Add " + newPlan);
+            }
+        }
     </script>
-</head>
-<body>
-    <header>
-        <h1>Premier Enterprise Customer Lookup</h1>
-    </header>
-    <div class="container full-height">
-        <label for="account-number">Enter Account Number:</label>
-        <input type="text" id="account-number" placeholder="e.g., 123456789">
-        <button onclick="lookupCustomer()">Lookup Customer</button>
-
-        <div id="customer-info">
-            <h2>Customer Information</h2>
-            <p><strong>Name:</strong> <span id="customer-name"></span></p>
-            <p><strong>Products:</strong> <span id="customer-products"></span></p>
-        </div>
-
-        <h2>Recent Transactions</h2>
-        <ul id="transaction-list"></ul>
-    </div>
 </body>
 </html>
