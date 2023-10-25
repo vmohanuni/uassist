@@ -19,7 +19,6 @@
         }
         .container {
             flex: 1; /* Make the left column take the available space */
-            max-width: 800px;
             background-color: #fff;
             padding: 20px;
             border: 1px solid #ddd;
@@ -46,10 +45,8 @@
         #customer-info {
             display: none;
         }
-        #iframe-container {
-            flex: 1; /* Make the right column take the available space */
-            height: 100vh; /* Make the iframe fill the entire viewport height */
-            border: none; /* Remove iframe border */
+        .container.full-height {
+            height: 100vh; /* Make the left column fill the entire viewport height */
         }
     </style>
     <script>
@@ -79,10 +76,10 @@
     <header>
         <h1>Premier Enterprise Customer Lookup</h1>
     </header>
-    <div class="container">
+    <div class="container full-height">
         <label for="account-number">Enter Account Number:</label>
         <input type="text" id="account-number" placeholder="e.g., 123456789">
-        <button onclick="lookupCustomer()">Lookup Customer</button>
+        <button onclick="lookupCustomer()">Lookup Customer">
 
         <div id="customer-info">
             <h2>Customer Information</h2>
@@ -90,6 +87,5 @@
             <p><strong>Products:</strong> <span id="customer-products"></span></p>
         </div>
     </div>
-    <iframe id="iframe-container" src="https://xconsole.cloud.uniphore.com/auth-validator/?accountId=uas-dm&Environment-Name=Dev&appkey=e0443c07-73ec-48dc-9bd7-af17b99109f3&redirectUrl=https%3A%2F%2Fxconsole.cloud.uniphore.com%2Finteract%2Findex%3Fappkey%3De0443c07-73ec-48dc-9bd7-af17b99109f3%26accountId%3Duas-dm%26Environment-Name%3DDev%26isEmbedded%3Dtrue" allowfullscreen></iframe>
 </body>
 </html>
