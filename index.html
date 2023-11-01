@@ -108,6 +108,18 @@
 </div>
 
 <script>
+	window.addEventListener("message", receiveMessage, false);
+	
+	function receiveMessage(event) {
+	  // Check the origin of the message for security purposes
+	
+	  // Handle the received message
+	  var message = event.data;
+		console.error(message);
+	  // Do something with the message
+	}
+
+	
     function lookupAccount() {
         let accountNumber = document.getElementById('accountNumber').value;
 
